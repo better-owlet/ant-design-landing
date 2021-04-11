@@ -1,4 +1,3 @@
-
 module.exports = {
   locale: 'zh-CN',
   messages: {
@@ -31,6 +30,7 @@ module.exports = {
     'app.footer.kitchen': 'Sketch 工具集',
     'app.footer.antd-library': 'Axure 部件库',
     'app.footer.umi': 'React 应用开发框架',
+    'app.footer.dumi': '组件/文档研发工具',
     'app.footer.dva': '数据流前端框架',
     'app.footer.design-platform': '蚂蚁金服设计平台',
     'app.footer.antux': '页面逻辑素材',
@@ -48,6 +48,6 @@ module.exports = {
     'app.footer.xcloud': '蚂蚁体验云',
     'app.footer.lang': 'English',
     'app.layout.notification.title': '关注下 Star 数',
-    'app.layout.notification.content': '网站流量与 star 数不成比，各位给 github 加一下 star 有没有，点击右侧按钮去帮我们增加',
+    'app.layout.notification.content': '我们需要您的支持，请点击按钮帮助我们增加 github star。',
   },
 };

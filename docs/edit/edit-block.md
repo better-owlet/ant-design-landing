@@ -70,16 +70,21 @@ title:
 
 ```__react
 import React from 'react';
-import { Icon } from 'antd';
+import {
+  PictureOutlined,
+  PaperClipOutlined,
+  BarsOutlined,
+  VideoCameraOutlined,
+} from '@ant-design/icons';
 
 const iconData = [
-  { icon: 'T', isText: true, content: '编辑当前文字内容。' },
-  { icon: 'picture', content: '更改图片' },
-  { icon: 'Ty', isText: true, content: 'rc-texty 专属的编辑当前文字内容。' },
-  { icon: 'Icon', isText: true, content: 'ant deisgn icon 的编辑，只需输入 icon 的 type。' },
-  { icon: 'paper-clip', content: '编辑链接。' },
-  { icon: 'bars', content: '导航 Menu 编辑。' },
-  { icon: 'video-camera', content: 'video 地址编辑。' },
+  { icon: 'T', content: '编辑当前文字内容。' },
+  { icon: <PictureOutlined />, content: '更改图片' },
+  { icon: 'Ty', content: 'rc-texty 专属的编辑当前文字内容。' },
+  { icon: 'Icon', content: 'ant deisgn icon 的编辑，只需输入 icon 的 type。' },
+  { icon: <PaperClipOutlined />, content: '编辑链接。' },
+  { icon: <BarsOutlined />, content: '导航 Menu 编辑。' },
+  { icon: <VideoCameraOutlined />, content: 'video 地址编辑。' },
 ];
 
 function Demo() {
@@ -89,7 +94,7 @@ function Demo() {
         {iconData.map((item, i) => (
           <li key={i.toString()}>
             <span className="edit-icon-demo">
-            {item.isText ? item.icon : <Icon type={item.icon} />}
+            {item.icon}
             </span>
             {' '}
             {item.content}
@@ -151,3 +156,8 @@ ReactDOM.render(<Demo />, mountNode);
 <img class="preview-img" align="right" alt="其它功能" src="https://gw.alipayobjects.com/zos/rmsportal/MoOfsnZzXULUYsIOBNlD.jpg">
 
 主要提供：页面锚点功能（`Link 导航` 与此功能相同）和整屏滚动。
+
+
+### 导入及导出编辑器内容
+
+如果你需要导入，或者导出编辑器内容，可以点击顶部菜单的小扳手图样，在出来的窗口中。点下载JSON，就是导出编辑数据，然后粘贴JSON数据，实际上就是导入（你之前导出的JSON文件）。

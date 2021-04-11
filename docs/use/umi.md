@@ -35,7 +35,7 @@ title:
 
 安装 `react` 和 `react-dom`, `npm install react react-dom --save`;
 
-详细参考[开始使用里的安装依赖](docs/use/getting-started-cn#安装依赖);
+详细参考[开始使用里的安装依赖](docs/use/getting-started#安装依赖);
 
 这里我们还需要安装 `npm install umi-plugin-react --save-dev`, 再创建 `.umirc.js` 在根目录里, 现在目录结构为：
 
@@ -47,9 +47,15 @@ title:
 └── .umirc.js
 ```
 
-### 添加 `umi-plugin-react`;
+### antd import 插件;
 
-在 `.umirc.js` 里添加 `plugins` 即可：
+#### 3.0 只需要安装 `@umijs/preset-react` 即可；
+
+`npm i @umijs/preset-react --save-dev`;
+
+#### 2.0 添加 `umi-plugin-react`;
+
+先安装插件 `npm i umi-plugin-react --save-dev`, 再在 `.umirc.js` 里添加 `plugins` 即可：
 
 ```js
 export default {
@@ -57,10 +63,10 @@ export default {
     [
       'umi-plugin-react', {
         antd: true,
-      }
+      },
     ],
-  ]
-}
+  ],
+};
 ```
 
 ## 修改入口文件
@@ -83,9 +89,19 @@ export default function() {
 
 ## CSS Modules
 
+### 3.0 将自动识别 css modules;
+
+```jsx
+import style from 'xxx.less' => 使用 css modules;
+
+import 'xxx.less' => 不使用 css modules;
+```
+
+### 2.0 使用以下方法
+
 umi 同样使用了 `css-modules`, 同样我们提供了以下几种解决方案。
 
-### 在全局样式里引用
+#### 在全局样式里引用
 
 在 `src` 里新建一个 `global.less`; 在 `global.less` 里引入 `Home` 样式: 
 
@@ -95,11 +111,11 @@ umi 同样使用了 `css-modules`, 同样我们提供了以下几种解决方案
 
 如果选择这个方案，我们需要删除 `Home` 的 `index.jsx` 里的 `import './less/antMotionStyle.less';`
 
-### 使用 css-module 的 global
+#### 使用 css-module 的 global
 
 使用 `css-modules` 的 `global`, 在 `index.less` 里添加 `:global`, 将样式不作转换, `global` 具体使用[请查看开始使用](/docs/use/getting-started#样式)。
 
-### 关闭 css-modules
+#### 关闭 css-modules
 
 如果你当前项目为新项目，且对 `css-modules` 并不是太了解，可以选择关闭 `css-modules`，只需要在 `.umirc.js` 文件里增加 `disableCSSModules: true`。
 

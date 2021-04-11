@@ -1,5 +1,8 @@
 import React from 'react';
-import { Collapse, Col, Radio, Switch, Row, Tooltip, Icon } from 'antd';
+import { Collapse, Col, Radio, Switch, Row, Tooltip } from 'antd';
+import {
+  QuestionCircleOutlined,
+} from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
 import { deepCopy } from '../../../../utils';
 import * as actions from '../../../../shared/redux/actions';
@@ -161,19 +164,19 @@ class EditorOther extends React.PureComponent {
               </span>
             )}
           >
-            <Icon type="question-circle" style={{ marginLeft: 8 }} />
+            <QuestionCircleOutlined style={{ marginLeft: 8 }} />
           </Tooltip>
         );
         return [
           <Row gutter={8} key={`${item.name}-1`}>
-            <Col>
+            <Col span={24}>
               {item.name}
               {' '}
               {tip}
             </Col>
           </Row>,
           <Row gutter={8} key={`${item.name}-2`}>
-            <Col>
+            <Col span={24}>
               {compChild}
             </Col>
           </Row>,
@@ -186,7 +189,7 @@ class EditorOther extends React.PureComponent {
           {getDataChildren(item.children, item.type, item.key)}
           {item.demo && (
             <Row gutter={8} key={`${item.name}-3`}>
-              <Col>
+              <Col span={24}>
                 <div className="other-demo">
                   {
                     item.demo.match(/\.(mp4|webm|ogg)$/)

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { polyfill } from 'react-lifecycles-compat';
-import { Icon, Button } from 'antd';
+import { Button } from 'antd';
+import { BarsOutlined, DeleteOutlined, UpOutlined, DownOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
 import dragula from 'dragula';
 
 import { getCurrentDom } from '../utils';
-import { isImg, mergeEditDataToDefault, getDataSourceValue, mdId, objectEqual, getChildRect } from '../../../utils';
+import { isImg, mergeEditDataToDefault, deepCopy, getDataSourceValue, mdId, objectEqual, getChildRect } from '../../../utils';
 import * as utils from '../../../theme/template/utils';
 import webData from '../template.config';
 import tempData from '../../../templates/template/element/template.config';
@@ -186,7 +187,6 @@ class EditStateController extends React.Component {
     item.dataId === this.currentData.dataId
   ))[0];
 
-
   wrapperMove = (e) => {
     if (this.state.openEditText) {
       return;
@@ -270,7 +270,7 @@ class EditStateController extends React.Component {
   }
 
   setTemplateConfigData = (text) => {
-    const data = this.props.templateData;
+    const data = deepCopy(this.props.templateData);
     // data.noHistory = noHistory;
     const ids = this.currentData.dataId.split('-');
     const t = getDataSourceValue(ids[1], data.data.config, [ids[0], 'dataSource']);
@@ -532,12 +532,15 @@ class EditStateController extends React.Component {
   getFuncIconChild = (i, dataArray, key) => {
     return ['up', 'down', 'delete'].map((type) => {
       let disabled = false;
+      let child = <DeleteOutlined />;
       switch (type) {
         case 'up':
           disabled = !i;
+          child = <UpOutlined />;
           break;
         case 'down':
           disabled = i === dataArray.length - 1;
+          child = <DownOutlined />;
           break;
         default:
           disabled = dataArray.length === 1;
@@ -550,7 +553,7 @@ class EditStateController extends React.Component {
           key={type}
           onClick={(e) => { this.onFuncClick(type, key, e); }}
         >
-          <Icon type={type} />
+          {child}
         </Button>
       );
     });
@@ -602,7 +605,7 @@ class EditStateController extends React.Component {
           className="overlay-elem"
         >
           <div className="drag-hints">
-            <Icon type="bars" />
+            <BarsOutlined />
             {' '}
             <FormattedMessage id="app.state.drag" />
           </div>
